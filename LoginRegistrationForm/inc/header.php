@@ -29,6 +29,7 @@ include_once "Classes/frontclass.php";
     <link href="css/bootstrap.min.css" rel="stylesheet">
      <link href="css/buton.css" rel="stylesheet">
      <link href="css/process.css" rel="stylesheet">
+     <link href="css/mystyle.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -94,14 +95,14 @@ echo "<span style='color:green'>$age years</span>";
                        </a></li>
                       <li><a href="basicinfo.php" class="w3-bar-item">
                       My Address<br/>
-                         <?php
+                       <?php
                         $getdata = $allF->getuseraddressby($userId);
                          if ($getdata) {
                           while($value = $getdata->fetch_assoc()){
                             ?>
                             <?php 
                               if ($userId == $value['userId']) {
-                               echo $value['area'];  echo $value['distName'];
+                               echo $value['area']; echo $value['distName'];
                               }else{
                                  echo "No Address";
                               }
@@ -112,8 +113,27 @@ echo "<span style='color:green'>$age years</span>";
                       </a></li>
                       <li><a href="my_details.php" class="w3-bar-item">My Portfolio</a></li>
                       <li><a href="education.php" class="w3-bar-item"> My Educational Details </a></li>
-                      <li><a href="professionalTraining.php" class="w3-bar-item"> My Professional Training </a></li>
-                      <li><a href="workExperience.php" class="w3-bar-item">My Work Experience </a></li>
+                      <li><a href="professionalTraining.php" class="w3-bar-item"> My Professional Training<br/>
+
+                        <?php
+                        $getdata = $allF->getusertrainingby($userId);
+                         if ($getdata) {
+                          echo "<span style='color:red'>No Training</span>"; 
+                              }else{
+                                 echo "<span style='color:green'>Training added</span>";
+                              }
+
+                             ?> </a></li>
+                      <li><a href="workExperience.php" class="w3-bar-item">My Work Experience <br/>
+                      <?php
+                        $getdata = $allF->getworking($userId);
+                         if (!$getdata) {
+                               echo "<span style='color:red'>No Experience</span>"; 
+                              }else{
+                                 echo "<span style='color:green'>Experience added</span>";
+                              }
+                               ?>
+                       </a></li>
                        
                     </ul>
                     
