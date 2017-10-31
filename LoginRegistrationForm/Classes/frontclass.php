@@ -375,22 +375,27 @@
 			return $result;
 		}
 
-		public function getAlladdressby($userId){
-			$query = "SELECT * FROM tbl_address WHERE userId = '$userId' limit 1";
-			$result = $this->db->select($query);
-			return $result;
-	}
-
-	public function getinformation($userId){
-		$query = "SELECT * FROM tbl_personalinfo WHERE userId = '$userId' limit 1";
-			$result = $this->db->select($query);
-			return $result;
-	}
-
 	public function getuseraddressby($userId){
 		$query = $query = "SELECT p.*, j.distName
 				FROM tbl_address as p,  tbl_district as j
 				WHERE p.diId = j.distId AND userId = '$userId'";
+			$result = $this->db->select($query);
+			return $result;
+	}
+
+	public function getusertrainingby($userId){
+		$query = "SELECT * FROM tbl_training WHERE userId = '$userId' limit 1";
+			$result = $this->db->select($query);
+			return $result;
+	}
+		public function getusertrainingby($userId){
+		$query = "SELECT * FROM tbl_training WHERE userId = '$userId'";
+			$result = $this->db->select($query);
+			return $result;
+	}
+
+	public function getworking($userId){
+		$query = "SELECT * FROM tbl_workingexperience WHERE userId = '$userId'";
 			$result = $this->db->select($query);
 			return $result;
 	}
